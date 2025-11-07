@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Driving licence Form</title>
+
+  <style>
+    :root{
+      --bg1: #0f172a;
+      --bg2: #0b2545;
+      --card: rgba(255,255,255,0.06);
+      --accent: #7c3aed; 
+      --accent-2: #06b6d4;
+      --glass: rgba(255,255,255,0.06);
+      --text-light: #e6eef8;
+      --muted: #b7c4d9;
+      --success: #16a34a;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,var(--bg1) 0%, var(--bg2) 100%);
+      color:var(--text-light);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+    }
+
+    .wrap{
+      max-width:940px;
+      margin: 24px auto;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:start;
+    }
+
+    .hero{
+      padding:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .hero h1{
+      margin:0 0 8px 0;
+      font-size:28px;
+      letter-spacing: -0.4px;
+      color:var(--text-light);
+    }
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    .card-note{
+      margin-top:18px;
+      padding:12px;
+      background: linear-gradient(90deg, rgba(124,58,237,0.08), rgba(6,182,212,0.06));
+      border-radius:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      padding:22px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    }
+
+    form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      margin-bottom:6px;
+      color:var(--muted);
+    }
+
+    .full{
+      grid-column: 1 / -1;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    input[type="date"],
+    select,
+    textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.02);
+      color:var(--text-light);
+      font-size:15px;
+      outline:none;
+      transition: box-shadow .18s, border-color .18s, transform .06s;
+    }
+
+    input:focus, select:focus, textarea:focus{
+      box-shadow: 0 6px 18px rgba(124,58,237,0.12);
+      border-color: rgba(124,58,237,0.9);
+      transform: translateY(-1px);
+    }
+
+    .radio-row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:6px;
+    }
+
+    .radio-row label{margin:0; font-size:14px; color:var(--muted)}
+
+    .help{
+      font-size:13px;
+      color:#9fb1cf;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      justify-content:flex-end;
+      align-items:center;
+      margin-top:8px;
+    }
+
+    .btn{
+      padding:10px 16px;
+      border-radius:10px;
+      border: none;
+      cursor:pointer;
+      font-weight:600;
+      font-size:15px;
+    }
+
+    .btn-primary{
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:white;
+      box-shadow: 0 8px 24px rgba(12,30,70,0.45);
+    }
+
+    .btn-ghost{
+      background: transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+    }
+
+    .note{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+    }
+
+    .error{
+      color:#ff8c8c;
+      font-size:13px;
+      margin-top:6px;
+    }
+
+    .success-msg{
+      display:none;
+      padding:10px 12px;
+      border-radius:10px;
+      background: rgba(22,163,74,0.12);
+      color: var(--success);
+      border:1px solid rgba(22,163,74,0.18);
+      font-weight:600;
+      margin-top:10px;
+    }
+
+    /* small screens */
+    @media (max-width:920px){
+      .wrap{grid-template-columns: 1fr; padding:0 6px;}
+      form{grid-template-columns: 1fr;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="hero">
+      <h1>Driving licence Form</h1>
+
+      <div class="card-note">
+        <strong>Tip:</strong> Use a valid email and phone number. 
+      </div>
+
+      <div style="margin-top:14px" class="note">
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <form id="regForm" novalidate>
+    
+        <div class="full">
+          <label for="name">Full name *</label>
+          <input id="name" name="name" type="text" required placeholder="e.g. xyz" />
+        </div>
+
+        <div>
+          <label for="email">Email address *</label>
+          <input id="email" name="email" type="email" required placeholder="abc@example.com" />
+        </div>
+
+        <div>
+          <label for="phone">Phone number *</label>
+          <input id="phone" name="phone" type="num" required placeholder="1234567890"
+                 pattern="^\d{10}$" title="Enter 10 digit phone number (digits only)" />
+          <div class="help">Enter 10 digits (numbers only).</div>
+        </div>
+
+        <div class="full">
+          <label>Gender *</label>
+          <div class="radio-row" role="radiogroup" aria-label="Gender">
+            <label><input type="radio" name="gender" value="Female" required> Female</label>
+            <label><input type="radio" name="gender" value="Male"> Male</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </div>
+        </div>
+
+          <label for="dob">Date of birth *</label>
+          <input id="dob" name="dob" type="date" required max="" />
+        </div>
+
+        <div class="full">
+          <label for="address">Address *</label>
+          <textarea id="address" name="address" rows="3" required placeholder="Street, City, State, ZIP"></textarea>
+        </div>
+
+        <div>
+          <label for="password">Password *</label>
+          <input id="password" name="password" type="password" minlength="6" required placeholder="Choose a password" />
+          <div class="help">Minimum 6 characters.</div>
+        </div>
+        <div>
+          <label for="confirm">Confirm password *</label>
+          <input id="confirm" name="confirm" type="password" minlength="6" required placeholder="Repeat password" />
+        </div>
+
+        <div class="full">
+          <div class="actions">
+            <button type="reset" class="btn btn-ghost">Reset</button>
+            <button type="submit" class="btn btn-primary">Submit Registration</button>
+          </div>
+
+          <div id="formError" class="error" aria-live="polite"></div>
+          <div id="formSuccess" class="success-msg">Registration submitted successfully!</div>
+          </div>
+          </form>
+          </div>
+          </div>
+
+</body>
+</html>
+   
+          
+
+    
